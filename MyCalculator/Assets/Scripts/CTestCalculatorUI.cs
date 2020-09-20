@@ -132,7 +132,7 @@ public class CTestCalculatorUI : MonoBehaviour
     {
         if (m_nNumPos < 1)
         {
-            m_strNum1 += "" + iIndex;
+            m_strNum1 += iIndex;
 
             if (m_iClickedPoint == 0)
             {
@@ -151,7 +151,7 @@ public class CTestCalculatorUI : MonoBehaviour
         }
         else
         {
-            m_strNum2 += "" + iIndex;
+            m_strNum2 += iIndex;
 
             if( m_iClickedPoint == 0 )
             {
