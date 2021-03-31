@@ -9,26 +9,7 @@ using UnityEngine.UI;
 public class CSimpleCalcUI : MonoBehaviour
 {
 
-    // 버튼 타입
-    public enum EBtn
-    {
-        e0 = 0,
-        e1,
-        e9 = 9,
-        ePoint,
-        eEqual,
-        ePlus,
-        eMinus,
-        eMutiply,
-        eDevide,
-        eBack,
-        eClear,
-        eClearAll,
-        eMod,
-
-        eMax,
-    }
-
+    
     [SerializeField] Text m_txtResult;              // 최종결과 텍스트
 
     [SerializeField] Button m_Button_1;        // 버튼
