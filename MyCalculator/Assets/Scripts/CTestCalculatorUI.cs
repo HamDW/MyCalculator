@@ -39,7 +39,6 @@ public class CTestCalculatorUI : MonoBehaviour
     [SerializeField] Text m_txtResult;              // 최종결과 텍스트
     [SerializeField] Text m_txtSub;                 // 중간 기록 텍스트
 
-
     private bool m_isClickNumber = true;// 숫자를 클릭했는가?
 
     private int m_nNumPos = 0;          // m_Nums의 위치값
