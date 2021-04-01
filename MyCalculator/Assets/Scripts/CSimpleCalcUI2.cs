@@ -9,26 +9,6 @@ using UnityEngine.UI;
 public class CSimpleCalcUI2 : MonoBehaviour
 {
 
-    // 버튼 타입
-    public enum EBtn
-    {
-        e0 = 0,
-        e1,
-        e9 = 9,
-        ePoint,
-        eEqual,
-        ePlus,
-        eMinus,
-        eMutiply,
-        eDevide,
-        eBack,
-        eClear,
-        eClearAll,
-        eMod,
-
-        eMax,
-    }
-
     public enum EOP
     {
         eNone = 0,
@@ -69,69 +49,77 @@ public class CSimpleCalcUI2 : MonoBehaviour
         m_Button_Minus.onClick.AddListener(OnClicked_Minus);
         m_Button_Equal.onClick.AddListener(OnClicked_Equal);
         m_Button_Clear.onClick.AddListener(OnClicked_Clear);
-      
     }
 
 
     public void OnClicked_Num(int idx)
     {
         m_txtResult.text = "";
-        string str = "";
+
         if (m_bOperatorClick){
-            m_strNum2 += idx.ToString();
-            str = m_strNum2;
+            m_strNum2 += idx;
+            m_txtResult.text = m_strNum2;
         }
         else{
-            m_strNum1 += idx.ToString();
-            str = m_strNum1;
+            m_strNum1 += idx;
+            m_txtResult.text = m_strNum1;
         }
-       
-        m_txtResult.text = str;
     }
 
-
-
-    public void OnClicked_Pluse()
+    private void Click_Operator()
     {
         if (m_bOperatorClick)
         {
-            m_nLeft = CalculateNumber(m_nLeft, int.Parse(m_strNum2));
+            if (!m_strNum2.Equals(""))
+                m_nLeft = CalculateNumber(m_nLeft, int.Parse(m_strNum2));
+
             m_strNum2 = "";
         }
         else
         {
-            m_bOperatorClick = true;
-            m_nLeft = (float)int.Parse(m_strNum1); 
+            if (!m_strNum1.Equals(""))
+                m_nLeft = (float)int.Parse(m_strNum1);
+
             m_strNum1 = "";
         }
+        m_bOperatorClick = true;
+    }
+    public void OnClicked_Pluse()
+    {
+        Click_Operator();
 
         m_eOperator = EOP.ePlus;
     }
     public void OnClicked_Minus()
     {
-        if (m_bOperatorClick)
-        {
-            m_nLeft = CalculateNumber( m_nLeft, int.Parse(m_strNum2));
-            m_strNum2 = "";
-        }
-        else
-        {
-            m_bOperatorClick = true;
-            m_nLeft = (float)int.Parse(m_strNum1);
-            m_strNum1 = "";
-        }
+        Click_Operator();
         m_eOperator = EOP.eMinus;
     }
+
+    public void OnClicked_Multiply()
+    {
+        Click_Operator();
+        m_eOperator = EOP.eMultiply;
+    }
+
+    public void OnClicked_Devide()
+    {
+        Click_Operator();
+        m_eOperator = EOP.eDevide;
+    }
+
 
     public void OnClicked_Equal()
     {
         Debug.LogFormat(" m_strNum1 = {0}, m_strNum2 = {1}", m_nLeft, m_strNum2);
-        float nLeft = m_nLeft; // int.Parse(m_strNum1);
-        int nRight = int.Parse(m_strNum2);
+        float nLeft = m_nLeft; 
+        int nRight = 0;
+        if( !m_strNum2.Equals("")) 
+            nRight = int.Parse(m_strNum2);
 
         float fResult = CalculateNumber(nLeft, nRight);
 
-        m_txtResult.text = string.Format("{0:#.#}", fResult);
+        m_txtResult.text = string.Format("{0:0.#}", fResult);
         ClearNum();
 
     }
@@ -155,7 +143,6 @@ public class CSimpleCalcUI2 : MonoBehaviour
                 nRes = (float)nLeft / nRight;
                 break;
         }
-
         return nRes;
     }
 
@@ -174,11 +161,7 @@ public class CSimpleCalcUI2 : MonoBehaviour
         m_strNum2 = "";
         m_bOperatorClick = false;
         m_eOperator = EOP.eNone;
+        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

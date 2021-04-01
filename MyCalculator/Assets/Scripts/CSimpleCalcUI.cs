@@ -45,10 +45,12 @@ public class CSimpleCalcUI : MonoBehaviour
         if( m_bPlusClick  )
         {
             m_strNum2 += "1";
+            m_txtResult.text = m_strNum2;
         }
         else
         {
             m_strNum1 += "1";
+            m_txtResult.text = m_strNum1;
         }
 
     }
@@ -59,10 +61,12 @@ public class CSimpleCalcUI : MonoBehaviour
         if (m_bPlusClick)
         {
             m_strNum2 += "2";
+            m_txtResult.text = m_strNum2;
         }
         else
         {
             m_strNum1 += "2";
+            m_txtResult.text = m_strNum1;
         }
     }
 
@@ -70,25 +74,30 @@ public class CSimpleCalcUI : MonoBehaviour
     {
         if (m_bPlusClick)
         {
-            m_nLeft += int.Parse(m_strNum2);
+            if( m_strNum2 != "")
+                m_nLeft += int.Parse(m_strNum2);
+    
             m_strNum2 = "";
         }
         else
         {
-            m_bPlusClick = true;
-            m_nLeft += int.Parse(m_strNum1);
+            if( m_strNum1 != "" )
+                m_nLeft = int.Parse(m_strNum1);
+            
             m_strNum1 = "";
         }
 
+        m_bPlusClick = true;
     }
 
     public void OnClicked_Equal()
     {
-        Debug.Log( " m_strNum1 = " + m_strNum1 );
-        int nLeft = m_nLeft; // int.Parse(m_strNum1);
+        int nLeft = m_nLeft; 
         int nRight = int.Parse(m_strNum2);
 
-        m_txtResult.text = (nLeft + nRight).ToString();
+        int nResult = nLeft + nRight;
+
+        m_txtResult.text = nResult.ToString();
         ClearNum();
 
     }
@@ -107,9 +116,5 @@ public class CSimpleCalcUI : MonoBehaviour
         m_bPlusClick = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
