@@ -8,15 +8,13 @@ using UnityEngine.UI;
 
 public class CSimpleCalcUI : MonoBehaviour
 {
-
-    
     [SerializeField] Text m_txtResult;              // 최종결과 텍스트
 
     [SerializeField] Button m_Button_1;        // 버튼
     [SerializeField] Button m_Button_2;        // 버튼
     [SerializeField] Button m_Button_Plus;     // 버튼
-    [SerializeField] Button m_Button_Equal;   // 버튼
-    [SerializeField] Button m_Button_Clear;   // 버튼
+    [SerializeField] Button m_Button_Equal;    // 버튼
+    [SerializeField] Button m_Button_Clear;    // 버튼
 
 
     private string m_strNum1 = "";      // 좌측값
