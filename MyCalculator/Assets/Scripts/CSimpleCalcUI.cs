@@ -31,7 +31,7 @@ public class CSimpleCalcUI : MonoBehaviour
     {
         m_Button_1.onClick.AddListener(OnClicked_Num1);
         m_Button_2.onClick.AddListener(OnClicked_Num2);
-        m_Button_Plus.onClick.AddListener(OnClicked_Pluse);
+        m_Button_Plus.onClick.AddListener(OnClicked_Plus);
         m_Button_Equal.onClick.AddListener(OnClicked_Equal);
         m_Button_Clear.onClick.AddListener(OnClicked_Clear);
     }
@@ -68,7 +68,7 @@ public class CSimpleCalcUI : MonoBehaviour
         }
     }
 
-    public void OnClicked_Pluse()
+    public void OnClicked_Plus()
     {
         if (m_bPlusClick)
         {
